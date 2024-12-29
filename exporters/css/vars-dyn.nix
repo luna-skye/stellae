@@ -17,6 +17,7 @@ let
     --stl-global-surface-sat_scale:   ${toString element.settings.global.surface.sat_scale};
     --stl-global-surface-light_scale: ${toString element.settings.global.surface.light_scale};
     --stl-global-accent-sat_scale:    ${toString element.settings.global.accent.sat_scale};
+    --stl-global-accent-light_scale:  ${toString element.settings.global.accent.light_scale};
 
     // Surface Colors
     --stl-surface-crust:    ${mkSurfaceColor element.settings.granular.surface.crust};
