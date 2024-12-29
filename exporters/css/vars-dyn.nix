@@ -4,7 +4,7 @@
 let
   hsl = c: "hsl(${toString c.h}, ${toString c.s}%, ${toString c.l}%)";
   mkSurfaceColor = c: "calc(var(--stl-global-surface-hue_offset) + ${toString c.h}), calc(var(--stl-global-surface-sat_scale) * ${toString c.s}%), calc(var(--stl-global-surface-light_scale) * ${toString c.l}%)";
-  mkAccentColor = c: "${toString c.h}, calc(var(--stl-global-accent-sat_scale) * ${toString c.s}%), calc(var(--stl-global-accent-sat_scale) * ${toString c.l}%)";
+  mkAccentColor = c: "${toString c.h}, calc(var(--stl-global-accent-sat_scale) * ${toString c.s}%), calc(var(--stl-global-accent-light_scale) * ${toString c.l}%)";
 
   css = /* css */ ''
   /*
