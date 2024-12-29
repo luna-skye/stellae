@@ -12,7 +12,14 @@ let
   hex = hex: "#${helpers.colors.hslToHex hex}";
 
   mkTokenRect = x: y: cat: name: /* html */ ''
-  <rect id="${name}" width="${toString options.boxSize.w}" height="${toString options.boxSize.h}" x="${toString (x * options.boxSize.w)}" y="${toString (y * options.boxSize.h)}" fill="${hex element.${cat}.${name}}" />
+  <rect
+    id="${name}"
+    width="${toString options.boxSize.w}"
+    height="${toString options.boxSize.h}"
+    x="${toString (x * options.boxSize.w)}"
+    y="${toString (y * options.boxSize.h)}"
+    fill="${hex element.${cat}.${name}}"
+  />
   '';
 
   svgWidth = helpers.math.round ((options.boxSize.w * 24) + (options.boxPadding * 2));
