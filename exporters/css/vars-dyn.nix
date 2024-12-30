@@ -12,14 +12,14 @@ let
   */
 
   :root {
-    // Global Controls
+    /* Global Controls */
     --stl-global-surface-hue_offset:  ${toString element.settings.global.surface.hue_offset};
     --stl-global-surface-sat_scale:   ${toString element.settings.global.surface.sat_scale};
     --stl-global-surface-light_scale: ${toString element.settings.global.surface.light_scale};
     --stl-global-accent-sat_scale:    ${toString element.settings.global.accent.sat_scale};
     --stl-global-accent-light_scale:  ${toString element.settings.global.accent.light_scale};
 
-    // Surface Colors
+    /* Surface Colors */
     --stl-surface-crust:    ${mkSurfaceColor element.settings.granular.surface.crust};
     --stl-surface-mantle:   ${mkSurfaceColor element.settings.granular.surface.mantle};
     --stl-surface-base:     ${mkSurfaceColor element.settings.granular.surface.base};
@@ -31,7 +31,7 @@ let
     --stl-surface-subtext1: ${mkSurfaceColor element.settings.granular.surface.subtext1};
     --stl-surface-text:     ${mkSurfaceColor element.settings.granular.surface.text};
 
-    // Accent Colors
+    /* Accent Colors */
     --stl-accent-red:           ${mkAccentColor element.settings.granular.accent.red};
     --stl-accent-light_red:     ${mkAccentColor element.settings.granular.accent.light_red};
     --stl-accent-orange:        ${mkAccentColor element.settings.granular.accent.orange};
