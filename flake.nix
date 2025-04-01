@@ -84,8 +84,7 @@
   in dynamicOutputs // defaultOutput // {
     tests = import ./tests { inherit pkgs helpers; };
     modules.default = { config, ... }: {
-      lib = helpers;
-      config = {
+      lib = helpers // {
         elements = {
           "carbon"   = import ./elements/carbon.nix;
           "hydrogen" = import ./elements/hydrogen.nix;
