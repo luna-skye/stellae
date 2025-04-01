@@ -83,13 +83,11 @@
 
   in dynamicOutputs // defaultOutput // {
     tests = import ./tests { inherit pkgs helpers; };
-    modules.default = { config, ... }: {
-      lib = helpers // {
-        elements = {
-          "carbon"   = import ./elements/carbon.nix;
-          "hydrogen" = import ./elements/hydrogen.nix;
-          "plasma"   = import ./elements/plasma.nix;
-        };
+    lib = helpers // {
+      elements = {
+        "carbon"   = import ./elements/carbon.nix;
+        "hydrogen" = import ./elements/hydrogen.nix;
+        "plasma"   = import ./elements/plasma.nix;
       };
     };
   };
