@@ -9,28 +9,13 @@
     inherit (pkgs) lib;
     helpers = import ./helpers { inherit pkgs; };
 
-
-    # STELLAE uses "elements" to power procedural color palette generation.
-    # These are Nix attrset files which expose a variety of parameters, both global and granular, to modify a color scheme.
-    # Here, we just dynamically fetch all the Nix code as a named attrset, with the file name being the key and the theme flavor result as the value.
     rawElements = helpers.importSubmodules ./elements;
-
-    # Elements are parameterized colors, so we need to bake those down into actual colors we can use somewhere.
-    # This maps the rawElements attrset to one where values have been converted through a helper function.
     elements = builtins.mapAttrs (name: el:
       { inherit name; } //
       (helpers.colors.convertElementTokens el)
     ) rawElements;
-
-    # In order to generate the results, we make use of an "exporter".
-    # These are Nix function files, which return a derivation of the resulting exported configuration, this can vary per exporter.
-    # Just as before, we're just dynamically fetching all the Nix code as a named attrset.
     exporters = helpers.buildExporterOutputs ./exporters;
 
-
-    #  TODO: Improve exporter derivation structure
-
-    # Recursively builds a derivations attrset structure from filesystem modules
     buildExporterOutputs = dir: element:
       let
         contents = builtins.readDir dir;
@@ -54,7 +39,6 @@
             value = buildExporterOutputs (dir + "/${name}") element;
           }) dirs);
 
-    # Dynamically create Nix outputs for each element, with all or specific exporters.
     dynamicOutputs = builtins.mapAttrs (el: element:
       buildExporterOutputs ./exporters element //
 
