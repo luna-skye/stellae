@@ -25,20 +25,20 @@ rec {
       text     = { h = 0; s = 89; l = 89; };
     };
     accent = {
-      red           = { h = 0;   s = 80; l = 55; };
-      light_red     = { h = 0;   s = 90; l = 65; };
-      orange        = { h = 30;  s = 100; l = 55; };
-      light_orange  = { h = 30;  s = 100; l = 69; };
-      yellow        = { h = 50;  s = 100; l = 55; };
-      light_yellow  = { h = 55;  s = 90; l = 65; };
-      green         = { h = 100; s = 80; l = 50; };
-      light_green   = { h = 110; s = 90; l = 68; };
-      blue          = { h = 200; s = 90; l = 55; };
-      light_blue    = { h = 200; s = 90; l = 65; };
-      purple        = { h = 280; s = 90; l = 65; };
-      light_purple  = { h = 280; s = 90; l = 75; };
-      magenta       = { h = 320; s = 80; l = 65; };
-      light_magenta = { h = 320; s = 100; l = 75; };
+      red           = { h = 0;   s = 60; l = 55; };
+      light_red     = { h = 0;   s = 65; l = 65; };
+      orange        = { h = 30;  s = 80; l = 55; };
+      light_orange  = { h = 30;  s = 70; l = 69; };
+      yellow        = { h = 50;  s = 80; l = 55; };
+      light_yellow  = { h = 55;  s = 70; l = 65; };
+      green         = { h = 100; s = 60; l = 50; };
+      light_green   = { h = 110; s = 70; l = 68; };
+      blue          = { h = 200; s = 70; l = 55; };
+      light_blue    = { h = 200; s = 70; l = 65; };
+      purple        = { h = 280; s = 70; l = 65; };
+      light_purple  = { h = 280; s = 70; l = 75; };
+      magenta       = { h = 320; s = 60; l = 65; };
+      light_magenta = { h = 320; s = 70; l = 75; };
     };
   };
 }
