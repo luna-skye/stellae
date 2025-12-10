@@ -41,4 +41,13 @@ rec {
       light_magenta = { h = 320; s = 70; l = 75; };
     };
   };
+
+  primary = {
+    category = "accent";
+    color = "purple";
+  };
+  secondary = {
+    category = "accent";
+    color = "magenta";
+  };
 }

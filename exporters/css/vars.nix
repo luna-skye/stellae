@@ -35,6 +35,9 @@ let
     --stl-accent-light_purple:  ${hsl element.accent.light_purple};
     --stl-accent-magenta:       ${hsl element.accent.magenta};
     --stl-accent-light_magenta: ${hsl element.accent.light_magenta};
+
+    --stl-primary: var(--stl-${element.settings.primary.category}-${element.settings.primary.color});
+    --stl-secondary: var(--stl-${element.settings.secondary.category}-${element.settings.secondary.color});
   }
   '';
 in pkgs.stdenv.mkDerivation {

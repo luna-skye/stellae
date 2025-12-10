@@ -41,4 +41,13 @@ rec {
       light_magenta = { h = 320; s = 100; l = 75; };
     };
   };
+
+  primary = {
+    category = "surface";
+    color = "text";
+  };
+  secondary = {
+    category = "surface";
+    color = "subtext1";
+  };
 }

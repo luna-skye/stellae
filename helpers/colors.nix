@@ -6,8 +6,7 @@ let
 
 in rec {
   # Processes a STELLAE Element and returns the final HSL values of each color token
-  convertElementTokens = element:
-  let
+  convertElementTokens = element: let
     inherit (element) global granular;
     h_off   = global.surface.hue_offset;
     s_scale = global.surface.sat_scale;
@@ -52,6 +51,9 @@ in rec {
       magenta       = convertToken "accent" "magenta";
       light_magenta = convertToken "accent" "light_magenta";
     };
+
+    primary   = convertToken element.primary.category   element.primary.color;
+    secondary = convertToken element.secondary.category element.secondary.color;
 
     settings = element;
   };
