@@ -1,4 +1,4 @@
-rec {
+{
   global = {
     surface = {
       hue_offset = 240.0;
@@ -42,12 +42,10 @@ rec {
     };
   };
 
-  primary = {
-    category = "accent";
-    color = "purple";
-  };
-  secondary = {
-    category = "accent";
-    color = "magenta";
-  };
+  primary   = { category = "accent"; color = "purple";       };
+  secondary = { category = "accent"; color = "magenta";      };
+  info      = { category = "accent"; color = "light_blue";   };
+  success   = { category = "accent"; color = "light_green";  };
+  warning   = { category = "accent"; color = "light_yellow"; };
+  error     = { category = "accent"; color = "light_red";    };
 }

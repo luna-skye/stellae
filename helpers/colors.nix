@@ -23,6 +23,7 @@ in rec {
     };
 
   in {
+    # Resulting Color Palette
     surface = {
       crust    = convertToken "surface" "crust";
       mantle   = convertToken "surface" "mantle";
@@ -52,9 +53,15 @@ in rec {
       light_magenta = convertToken "accent" "light_magenta";
     };
 
+    # Token References
     primary   = convertToken element.primary.category   element.primary.color;
     secondary = convertToken element.secondary.category element.secondary.color;
+    info      = convertToken element.info.category      element.info.color;
+    success   = convertToken element.success.category   element.success.color;
+    warning   = convertToken element.warning.category   element.warning.color;
+    error     = convertToken element.error.category     element.error.color;
 
+    # The STELLAE settings of the original element
     settings = element;
   };
 
