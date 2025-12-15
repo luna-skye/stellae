@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{ lib, ... }: {
   # Calculates the modulo of two numbers
   # @param a The dividend
   # @param b The divisor

@@ -1,72 +1,35 @@
-{ lib, ... }:
-
-
-let
+{ lib, ... }: let
   math = import ./math.nix { inherit lib; };
 
 in rec {
-  # Processes a STELLAE Element and returns the final HSL values of each color token
-  convertElementTokens = element: let
-    inherit (element) global granular;
-    h_off   = global.surface.hue_offset;
-    s_scale = global.surface.sat_scale;
-    l_scale = global.surface.light_scale;
-
-    convertToken = cat: token: if (cat == "surface") then {
-      h = math.round (math.mod (h_off + granular.${cat}.${token}.h) 360);
-      s = math.round (s_scale * granular.${cat}.${token}.s);
-      l = math.round (l_scale * granular.${cat}.${token}.l);
+  # Processes a STELLAE Element and returns the final HSL values of each color
+  buildElement = element: let
+    inherit (element) global;
+    mkColor = cat: color: if (cat == "surface") then {
+      h = math.round (math.mod (global.surface.hue_offset + color.h) 360);
+      s = math.round (global.surface.sat_scale * color.s);
+      l = math.round (global.surface.light_scale * color.l);
     } else {
-      h = math.round (math.mod (granular.${cat}.${token}.h) 360);
-      s = math.round (global.accent.sat_scale * granular.${cat}.${token}.s);
-      l = math.round (global.accent.light_scale * granular.${cat}.${token}.l);
+      h = math.round (math.mod (color.h) 360);
+      s = math.round (global.accent.sat_scale * color.s);
+      l = math.round (global.accent.light_scale * color.l);
     };
-
-  in {
-    # Resulting Color Palette
-    surface = {
-      crust    = convertToken "surface" "crust";
-      mantle   = convertToken "surface" "mantle";
-      base     = convertToken "surface" "base";
-      surface0 = convertToken "surface" "surface0";
-      surface1 = convertToken "surface" "surface1";
-      overlay0 = convertToken "surface" "overlay0";
-      overlay1 = convertToken "surface" "overlay1";
-      subtext0 = convertToken "surface" "subtext0";
-      subtext1 = convertToken "surface" "subtext1";
-      text     = convertToken "surface" "text";
-    };
-    accent = {
-      red           = convertToken "accent" "red";
-      light_red     = convertToken "accent" "light_red";
-      orange        = convertToken "accent" "orange";
-      light_orange  = convertToken "accent" "light_orange";
-      yellow        = convertToken "accent" "yellow";
-      light_yellow  = convertToken "accent" "light_yellow";
-      green         = convertToken "accent" "green";
-      light_green   = convertToken "accent" "light_green";
-      blue          = convertToken "accent" "blue";
-      light_blue    = convertToken "accent" "light_blue";
-      purple        = convertToken "accent" "purple";
-      light_purple  = convertToken "accent" "light_purple";
-      magenta       = convertToken "accent" "magenta";
-      light_magenta = convertToken "accent" "light_magenta";
-    };
-
-    # Token References
-    primary   = convertToken element.primary.category   element.primary.color;
-    secondary = convertToken element.secondary.category element.secondary.color;
-    info      = convertToken element.info.category      element.info.color;
-    success   = convertToken element.success.category   element.success.color;
-    warning   = convertToken element.warning.category   element.warning.color;
-    error     = convertToken element.error.category     element.error.color;
-
-    # The STELLAE settings of the original element
-    settings = element;
+  in rec {
+    inherit (element) name;
+    params = element;
+    surface = builtins.mapAttrs (_: color: mkColor "surface" color) element.surface;
+    accent  = builtins.mapAttrs (_: color: mkColor "accent"  color) element.accent;
+    tokens  = builtins.mapAttrs (_: token: (
+      builtins.getAttr token.color (
+        builtins.getAttr token.category { inherit surface accent; }
+      )
+    )) element.tokens;
   };
 
 
   cleanHex = hex: builtins.substring (if (builtins.match "^.*[#].*$" hex) != null then 1 else 0) 6 hex;
+
+  #  FIX: Causes error with high surface saturation levels
   toHex = x: lib.fixedWidthString 2 "0" (lib.toHexString x);
 
   hueToRgb = { p, q, t }:
