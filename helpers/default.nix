@@ -13,6 +13,7 @@ in rec {
   Element: ${el}'';
   
 
+  # Import all exporters as a nested attrset from default.nix files
   getExporters = path: let
     entries = builtins.readDir path;
     helpers = import ../helpers { inherit pkgs; };
