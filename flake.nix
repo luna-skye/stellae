@@ -14,6 +14,6 @@
     tests = import ./tests { inherit pkgs helpers; };
     lib = helpers;
     inherit rawElements exporters;
-    elements = builtins.mapAttrs (_: re: helpers.buildElement re) rawElements;
+    elements = builtins.mapAttrs (_: raw: helpers.buildElement raw) rawElements;
   };
 }
