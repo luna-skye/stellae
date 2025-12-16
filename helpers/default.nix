@@ -26,6 +26,15 @@ in rec {
   ) entries;
 
 
+  # Builds all exporters from a single element
+  buildExporters = exporters: element: lib.mapAttrs (name: exporter: (let
+    type = builtins.typeOf exporter;
+  in
+    if type == "lambda" then exporter { inherit element; }
+    else if type == "set" then buildExporters exporter element else {}
+  )) exporters;
+
+
   # Get all .nix files in a directory as a nix-store path list
   getSubmodulePaths = dir: builtins.concatLists (lib.mapAttrsToList (path: kind:
     if (kind == "directory") then
