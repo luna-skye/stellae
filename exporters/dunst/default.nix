@@ -1,7 +1,7 @@
 { helpers, ... }: let
   inherit (helpers) hslToHex;
 
-  c = element: let
+  mkOpts = element: let
     inherit (element) surface accent tokens;
   in {
     urgency_normal = {
@@ -22,23 +22,23 @@
   };
 
 in {
-  hmOptions = { element }: c element;
+  hmOptions = { element }: mkOpts element;
   plaintext = { element }: let
-    c = c element;
+    opts = mkOpts element;
   in ''
     [urgency_normal]
-    background="${c.urgency_normal.background}"
-    foreground="${c.urgency_normal.foreground}"
-    frame_color="${c.urgency_normal.frame_color}"
+    background="${opts.urgency_normal.background}"
+    foreground="${opts.urgency_normal.foreground}"
+    frame_color="${opts.urgency_normal.frame_color}"
 
     [urgency_low]
-    background="${c.urgency_low.background}"
-    foreground="${c.urgency_low.foreground}"
-    frame_color="${c.urgency_low.frame_color}"
+    background="${opts.urgency_low.background}"
+    foreground="${opts.urgency_low.foreground}"
+    frame_color="${opts.urgency_low.frame_color}"
 
     [urgency_critical]
-    background="${c.urgency_critical.background}"
-    foreground="${c.urgency_critical.foreground}"
-    frame_color="${c.urgency_critical.frame_color}"
+    background="${opts.urgency_critical.background}"
+    foreground="${opts.urgency_critical.foreground}"
+    frame_color="${opts.urgency_critical.frame_color}"
   '';
 }
