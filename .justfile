@@ -6,6 +6,9 @@ repl:
 test:
   nix-unit --flake '.#tests'
 
+inspect exporter element:
+  nix eval --raw --impure --expr 'let s = builtins.getFlake "'$(pwd)'"; in s.exporters.{{exporter}} { element = s.elements.{{element}}; }'
+
 # Preview a specific element's resulting SVG palette showcase
 preview element:
   nix eval --raw --impure --expr 'let s = builtins.getFlake "'$(pwd)'"; in s.exporters.svg.strip { element = s.elements.{{element}}; }' > preview.svg
