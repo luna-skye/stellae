@@ -90,4 +90,10 @@ in rec {
   rgbToHex = rgb: "${toHex rgb.r}${toHex rgb.g}${toHex rgb.b}";
   hexToHsl = hex: rgbToHsl (hexToRgb hex);
   hslToHex = hsl: rgbToHex (hslToRgb hsl);
+
+  format = {
+    hex = hex: "#${hex}";
+    rgb = { r, g, b }: "rgb(${toString r}, ${toString g}, ${toString b})";
+    hsl = { h, s, l }: "hsl(${toString h}, ${toString s}%, ${toString l}%)";
+  };
 }
