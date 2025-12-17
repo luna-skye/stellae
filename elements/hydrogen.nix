@@ -13,9 +13,9 @@
 
   surface = {
     crust    = { h = 0; s = 38; l = 6;  };
-    mantle   = { h = 0; s = 34; l = 8;  };
-    base     = { h = 0; s = 32; l = 12; };
-    surface0 = { h = 0; s = 30; l = 18; };
+    mantle   = { h = 0; s = 34; l = 10; };
+    base     = { h = 0; s = 32; l = 14; };
+    surface0 = { h = 0; s = 30; l = 20; };
     surface1 = { h = 0; s = 28; l = 32; };
     overlay0 = { h = 0; s = 25; l = 45; };
     overlay1 = { h = 0; s = 25; l = 56; };
