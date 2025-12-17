@@ -1,23 +1,22 @@
 { helpers, ... }: let
-  inherit (helpers) hslToHex;
-
   mkOpts = element: let
-    inherit (element) surface accent tokens;
+    hexElement = helpers.elementToFormattedHex element;
+    inherit (hexElement) surface accent tokens;
   in {
     urgency_normal = {
-      background = "#${hslToHex surface.mantle}";
-      foreground = "#${hslToHex tokens.primary}";
-      frame_color = "#${hslToHex tokens.primary}";
+      background = surface.mantle;
+      foreground = tokens.primary;
+      frame_color = tokens.primary;
     };
     urgency_low = {
-      background = "#${hslToHex surface.mantle}";
-      foreground = "#${hslToHex surface.subtext0}";
-      frame_color = "#${hslToHex surface.surface1}";
+      background = surface.mantle;
+      foreground = surface.subtext0;
+      frame_color = surface.surface1;
     };
     urgency_critical = {
-      background = "#${hslToHex surface.mantle}";
-      foreground = "#${hslToHex accent.light_red}";
-      frame_color = "#${hslToHex accent.light_red}";
+      background = surface.mantle;
+      foreground = accent.light_red;
+      frame_color = accent.light_red;
     };
   };
 
