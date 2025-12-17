@@ -1,12 +1,13 @@
 { helpers, ... }: let
-  inherit (helpers) hslToHex toHex;
+  inherit (helpers) toHex;
 
   mkOpts = element: let
-    inherit (element) surface tokens;
+    hexElement = helpers.elementToFormattedHex element;
+    inherit (hexElement) surface tokens;
   in {
-    background-color = "#${hslToHex surface.crust}${toHex 230}";
-    text-color = "#${hslToHex surface.subtext0}";
-    selection-color = "#${hslToHex tokens.primary}";
+    background-color = "${surface.crust}${toHex 230}";
+    text-color = surface.subtext0;
+    selection-color = tokens.primary;
   };
 
 in {
