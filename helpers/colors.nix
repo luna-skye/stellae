@@ -25,6 +25,45 @@ in rec {
       )
     )) rawElement.tokens;
   };
+
+  # Converts all colors within a built element to formatted HSL strings
+  elementToFormattedHsl = element: {
+    inherit (element) name params;
+    surface = builtins.mapAttrs (_: color: format.hsl color) element.surface;
+    accent = builtins.mapAttrs (_: color: format.hsl color) element.accent;
+    tokens = builtins.mapAttrs (_: color: format.hsl color) element.tokens;
+  };
+
+  # Converts all colors within a built element to Hex strings
+  elementToHex = element: {
+    inherit (element) name params;
+    surface = builtins.mapAttrs (_: color: hslToHex color) element.surface;
+    accent = builtins.mapAttrs (_: color: hslToHex color) element.accent;
+    tokens = builtins.mapAttrs (_: color: hslToHex color) element.tokens;
+  };
+
+  # Converts all colors within a built element to Hex strings with a "#" prefix
+  elementToFormattedHex = element: {
+    inherit (element) name params;
+    surface = builtins.mapAttrs (_: color: format.hex (hslToHex color)) element.surface;
+    accent = builtins.mapAttrs (_: color: format.hex (hslToHex color)) element.accent;
+    tokens = builtins.mapAttrs (_: color: format.hex (hslToHex color)) element.tokens;
+  };
+
+  # Converts all colors within a built element to RGB sets
+  elementToRgb = element: {
+    inherit (element) name params;
+    surface = builtins.mapAttrs (_: color: hslToRgb color) element.surface;
+    accent = builtins.mapAttrs (_: color: hslToRgb color) element.accent;
+    tokens = builtins.mapAttrs (_: color: hslToRgb color) element.tokens;
+  };
+
+  # Converts all colors within a built element to RGB sets
+  elementToFormattedRgb = element: {
+    inherit (element) name params;
+    surface = builtins.mapAttrs (_: color: format.rgb (hslToRgb color)) element.surface;
+    accent = builtins.mapAttrs (_: color: format.rgb (hslToRgb color)) element.accent;
+    tokens = builtins.mapAttrs (_: color: format.rgb (hslToRgb color)) element.tokens;
   };
 
 
