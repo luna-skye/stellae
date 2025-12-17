@@ -1,29 +1,27 @@
-{ helpers, ... }: let
-  inherit (helpers) hslToHex;
-
-in {
+{ helpers, ... }: {
   plaintext = { element }: let
-    inherit (element) surface tokens;
+    hexElement = helpers.elementToFormattedHex element;
+    inherit (hexElement) surface tokens;
   in /* json */ ''
     {
       "name": "STELLAE ${helpers.strings.capitalize element.name}",
-      "primary": "#${hslToHex tokens.primary}",
-      "primaryText": "#${hslToHex surface.text}",
-      "primaryContainer": "#${hslToHex surface.mantle}",
-      "secondary": "#${hslToHex tokens.secondary}",
-      "surface": "#${hslToHex surface.mantle}",
-      "surfaceText": "#${hslToHex surface.subtext0}",
-      "surfaceVariant": "#${hslToHex surface.base}",
-      "surfaceTint": "#${hslToHex tokens.primary}",
-      "background": "#${hslToHex surface.mantle}",
-      "backgroundText": "#${hslToHex surface.subtext0}",
-      "outline": "#${hslToHex tokens.primary}",
-      "surfaceContainer": "#${hslToHex surface.mantle}",
-      "surfaceContainerHigh": "#${hslToHex surface.base}",
-      "surfaceContainerHighest": "#${hslToHex surface.surface0}",
-      "error": "#${hslToHex tokens.error}",
-      "warning": "#${hslToHex tokens.warning}",
-      "info": "#${hslToHex tokens.info}",
+      "primary": "${tokens.primary}",
+      "primaryText": "${surface.text}",
+      "primaryContainer": "${surface.mantle}",
+      "secondary": "${tokens.secondary}",
+      "surface": "${surface.mantle}",
+      "surfaceText": "${surface.subtext0}",
+      "surfaceVariant": "${surface.base}",
+      "surfaceTint": "${tokens.primary}",
+      "background": "${surface.mantle}",
+      "backgroundText": "${surface.subtext0}",
+      "outline": "${tokens.primary}",
+      "surfaceContainer": "${surface.mantle}",
+      "surfaceContainerHigh": "${surface.base}",
+      "surfaceContainerHighest": "${surface.surface0}",
+      "error": "${tokens.error}",
+      "warning": "${tokens.warning}",
+      "info": "${tokens.info}",
       "matugen_type": "scheme-expressive"
     }
   '';
