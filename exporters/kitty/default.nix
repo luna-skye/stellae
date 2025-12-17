@@ -1,38 +1,37 @@
 { helpers, ... }: let
-  inherit (helpers) hslToHex;
-
   mkOpts = element: let
-    inherit (element) surface accent tokens;
+    hexElement = helpers.elementToFormattedHex element;
+    inherit (hexElement) surface accent tokens;
   in {
-    background = "#${hslToHex surface.mantle}";
-    foreground = "#${hslToHex surface.subtext1}";
+    background = surface.mantle;
+    foreground = surface.subtext1;
 
-    color0  = "#${hslToHex surface.subtext0}";
-    color8  = "#${hslToHex surface.overlay0}";
-    color7  = "#${hslToHex surface.subtext0}";
-    color15 = "#${hslToHex surface.text}";
+    color0  = surface.subtext0;
+    color8  = surface.overlay0;
+    color7  = surface.subtext0;
+    color15 = surface.text;
 
-    color1  = "#${hslToHex accent.red}";
-    color9  = "#${hslToHex accent.light_red}";
-    color3  = "#${hslToHex accent.yellow}";
-    color11 = "#${hslToHex accent.light_yellow}";
-    color2  = "#${hslToHex accent.green}";
-    color10 = "#${hslToHex accent.light_green}";
-    color4  = "#${hslToHex accent.blue}";
-    color12 = "#${hslToHex accent.light_blue}";
-    color6  = "#${hslToHex accent.purple}";
-    color14 = "#${hslToHex accent.light_purple}";
-    color5  = "#${hslToHex accent.magenta}";
-    color13 = "#${hslToHex accent.light_magenta}";
+    color1  = accent.red;
+    color9  = accent.light_red;
+    color3  = accent.yellow;
+    color11 = accent.light_yellow;
+    color2  = accent.green;
+    color10 = accent.light_green;
+    color4  = accent.blue;
+    color12 = accent.light_blue;
+    color6  = accent.purple;
+    color14 = accent.light_purple;
+    color5  = accent.magenta;
+    color13 = accent.light_magenta;
 
-    mark1_foreground = "#${hslToHex surface.crust}";
-    mark1_background = "#${hslToHex accent.light_green}";
-    mark2_foreground = "#${hslToHex surface.crust}";
-    mark2_background = "#${hslToHex accent.light_yellow}";
-    mark3_foreground = "#${hslToHex surface.crust}";
-    mark3_background = "#${hslToHex accent.light_red}";
+    mark1_foreground = surface.crust;
+    mark1_background = accent.light_green;
+    mark2_foreground = surface.crust;
+    mark2_background = accent.light_yellow;
+    mark3_foreground = surface.crust;
+    mark3_background = accent.light_red;
 
-    cursor = "#${hslToHex tokens.primary}";
+    cursor = tokens.primary;
   };
 
 in {
