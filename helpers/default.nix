@@ -21,7 +21,7 @@ in rec {
     let subpath = path + "/${name}";
     in if type == "directory" then
       if builtins.pathExists (subpath + "/default.nix") then
-        (import subpath) { inherit helpers; inherit (pkgs) lib; }
+        (import subpath) { inherit pkgs helpers; inherit (pkgs) lib; }
       else getExporters subpath
     else null
   ) entries;
