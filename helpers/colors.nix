@@ -3,8 +3,8 @@
 
 in rec {
   # Processes a STELLAE Element and returns the final HSL values of each color
-  buildElement = element: let
-    inherit (element) global;
+  buildElement = rawElement: let
+    inherit (rawElement) global;
     mkColor = cat: color: if (cat == "surface") then {
       h = math.round (math.mod (global.surface.hue_offset + color.h) 360);
       s = math.round (global.surface.sat_scale * color.s);
@@ -15,15 +15,16 @@ in rec {
       l = math.round (global.accent.light_scale * color.l);
     };
   in rec {
-    inherit (element) name;
-    params = element;
-    surface = builtins.mapAttrs (_: color: mkColor "surface" color) element.surface;
-    accent  = builtins.mapAttrs (_: color: mkColor "accent"  color) element.accent;
+    inherit (rawElement) name;
+    params = rawElement;
+    surface = builtins.mapAttrs (_: color: mkColor "surface" color) rawElement.surface;
+    accent  = builtins.mapAttrs (_: color: mkColor "accent"  color) rawElement.accent;
     tokens  = builtins.mapAttrs (_: token: (
       builtins.getAttr token.color (
         builtins.getAttr token.category { inherit surface accent; }
       )
-    )) element.tokens;
+    )) rawElement.tokens;
+  };
   };
 
 
