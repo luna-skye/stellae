@@ -49,10 +49,14 @@ in rec {
 
 
   # Imports any found submodules within a path
-  importSubmodules = dir: builtins.listToAttrs (builtins.map (path: let
+  getElements = dir: builtins.listToAttrs (builtins.map (path: let
     name = builtins.head (lib.splitString "." (builtins.baseNameOf path));
   in {
     inherit name;
-    value = { inherit name; } // import path;
+    value =
+        # include element name
+        { inherit name; } //
+        # deep merge with hydrogen element as a base
+        lib.recursiveUpdate (import ../elements/hydrogen.nix) (import path);
   }) (getSubmodulePaths dir));
 } // colors

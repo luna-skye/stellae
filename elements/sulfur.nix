@@ -1,53 +1,7 @@
 {
-  global = {
-    surface = {
-      hue_offset = 60;
-      sat_scale = 1;
-      light_scale = 1;
-    };
-    accent = {
-      sat_scale = 1;
-      light_scale = 1;
-    };
-  };
-
-  surface = {
-    crust    = { h = 0; s = 38; l = 6;  };
-    mantle   = { h = 0; s = 34; l = 8;  };
-    base     = { h = 0; s = 32; l = 12; };
-    surface0 = { h = 0; s = 30; l = 18; };
-    surface1 = { h = 0; s = 28; l = 32; };
-    overlay0 = { h = 0; s = 25; l = 45; };
-    overlay1 = { h = 0; s = 25; l = 56; };
-    subtext0 = { h = 0; s = 52; l = 70; };
-    subtext1 = { h = 0; s = 73; l = 82; };
-    text     = { h = 0; s = 89; l = 90; };
-  };
-
-  accent = {
-    red           = { h = 0;   s = 60; l = 55; };
-    light_red     = { h = 0;   s = 65; l = 65; };
-    orange        = { h = 30;  s = 80; l = 55; };
-    light_orange  = { h = 30;  s = 70; l = 69; };
-    yellow        = { h = 50;  s = 80; l = 55; };
-    light_yellow  = { h = 55;  s = 70; l = 65; };
-    green         = { h = 100; s = 60; l = 50; };
-    light_green   = { h = 110; s = 70; l = 68; };
-    blue          = { h = 200; s = 70; l = 55; };
-    light_blue    = { h = 200; s = 70; l = 65; };
-    purple        = { h = 280; s = 70; l = 65; };
-    light_purple  = { h = 280; s = 70; l = 75; };
-    magenta       = { h = 320; s = 60; l = 65; };
-    light_magenta = { h = 320; s = 70; l = 75; };
-  };
-
+  global.surface.hue_offset = 60;
   tokens = {
-    primary   = { category = "accent"; color = "orange";       };
-    secondary = { category = "accent"; color = "yellow";      };
-
-    info      = { category = "accent"; color = "light_blue";   };
-    success   = { category = "accent"; color = "light_green";  };
-    warning   = { category = "accent"; color = "light_yellow"; };
-    error     = { category = "accent"; color = "light_red";    };
+    primary = { category = "accent"; color = "yellow"; };
+    secondary = { category = "accent"; color = "light_orange"; };
   };
 }

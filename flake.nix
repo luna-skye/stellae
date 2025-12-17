@@ -7,7 +7,7 @@
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
     helpers = import ./helpers { inherit pkgs; };
 
-    rawElements = helpers.importSubmodules ./elements;
+    rawElements = helpers.getElements ./elements;
     exporters = helpers.getExporters ./exporters;
 
   in {
